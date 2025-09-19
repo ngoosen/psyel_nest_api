@@ -6,6 +6,9 @@ import { AppService } from './app.service';
 import { CoursController } from './cours/cours.controller';
 import { Cours } from './cours/cours.entity';
 import { CoursService } from './cours/cours.service';
+import { Notes } from './notes/notes.entity';
+import { NoteService } from './notes/notes.service';
+import { NotesController } from './notes/notes.controller';
 
 @Module({
   imports: [
@@ -16,9 +19,9 @@ import { CoursService } from './cours/cours.service';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
     }),
-    TypeOrmModule.forFeature([Cours]),
+    TypeOrmModule.forFeature([Cours, Notes]),
   ],
-  controllers: [AppController, CoursController],
-  providers: [AppService, CoursService],
+  controllers: [AppController, CoursController, NotesController],
+  providers: [AppService, CoursService, NoteService],
 })
 export class AppModule {}
