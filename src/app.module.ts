@@ -3,6 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CoursController } from './cours/cours.controller';
+import { Cours } from './cours/cours.entity';
+import { CoursService } from './cours/cours.service';
 
 @Module({
   imports: [
@@ -11,11 +14,11 @@ import { AppService } from './app.service';
       type: 'sqlite',
       database: 'database/universite_demo.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
-    TypeOrmModule.forFeature([]),
+    TypeOrmModule.forFeature([Cours]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, CoursController],
+  providers: [AppService, CoursService],
 })
 export class AppModule {}
